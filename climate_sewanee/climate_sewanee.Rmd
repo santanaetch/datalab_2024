@@ -1,0 +1,40 @@
+---
+title: "Climate in Sewanee"
+author: "Santana Etchison"
+date: "2024-06-12"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+## AVERAGE TEMP OVER TIME
+
+```{r}
+library(readr)
+sewanee_weather_2_ <- read_csv("sewanee_weather (2).csv")
+View(sewanee_weather_2_)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+
+sewanee<-sewanee_weather_2_ %>%
+  select(TMAX,TMIN,DATE)%>%
+  mutate(AVGR=( TMAX + TMIN)/ 2)
+  
+  ggplot(data = sewanee , aes(x = DATE, y = AVGR , color = 'lightblue'))+
+    geom_line()
+  ggplot(data = sewanee , aes(x = DATE, y = TMIN , color= 'limegreen'))+
+    geom_line()+
+    labs(title = 'Minimum Temperature Over Time')
+
+  ggplot(data = sewanee , aes(x = DATE, y = TMAX , color = 'pink'))+
+    geom_line()+
+    labs(title = 'Maximum Temperature Over Time' ,
+         x= 'date',
+         y = 'max temp')
+
+  
+
+```
+
+
+
